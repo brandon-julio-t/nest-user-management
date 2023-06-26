@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
 
-describe('UsersService', async () => {
+describe('UsersService', () => {
   let service: UsersService;
 
   beforeEach(async () => {
@@ -18,7 +18,7 @@ describe('UsersService', async () => {
 
   it('should be able to add user', async () => {
     expect(
-      service.create({
+      await service.create({
         name: 'name',
         email: 'email',
         age: 1,
@@ -36,7 +36,7 @@ describe('UsersService', async () => {
   it('should be able to find user', async () => {
     const [user] = await service.getAll();
 
-    expect(service.getOneById(user.id)).toBe(user);
+    expect(await service.getOneById(user.id)).toBe(user);
   });
 
   it('should be able to update user', async () => {
@@ -44,7 +44,7 @@ describe('UsersService', async () => {
 
     const newName = 'new name';
 
-    await service.update({ ...user, name: newName });
+    expect(await service.update({ ...user, name: newName })).toBeTruthy();
 
     const updatedUser = await service.getOneById(user.id);
     expect(updatedUser?.name).toBe(newName);
@@ -53,8 +53,8 @@ describe('UsersService', async () => {
   it('should be able to remove user', async () => {
     const [user] = await service.getAll();
 
-    expect(service.delete(user)).toBeTruthy();
-    expect(service.getOneById(user.id)).toBeNull();
+    expect(await service.delete(user)).toBeTruthy();
+    expect(await service.getOneById(user.id)).toBeNull();
 
     const users = await service.getAll();
     expect(users.length).toBe(0);

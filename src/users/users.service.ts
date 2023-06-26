@@ -42,7 +42,9 @@ export class UsersService {
       return false;
     }
 
-    Object.assign(entity, payload);
+    this.entities = this.entities.map((user) =>
+      user.id === payload.id ? { ...user, ...payload } : user,
+    );
 
     return true;
   }
