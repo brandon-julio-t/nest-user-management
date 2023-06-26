@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { User } from './contracts/user.interface';
 import CreateUserDto from './dtos/create-user.dto';
 import { v4 as uuid } from 'uuid';
-import UpdateUserDto from './dtos/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -36,7 +35,7 @@ export class UsersService {
   }
 
   async update(payload: Partial<User> & Pick<User, 'id'>) {
-    const entity = this.getOneById(payload.id);
+    const entity = await this.getOneById(payload.id);
 
     this.entities = this.entities.map((user) =>
       user.id === payload.id ? { ...user, ...payload } : user,
@@ -46,7 +45,7 @@ export class UsersService {
   }
 
   async delete(user: User) {
-    const entity = this.getOneById(user.id);
+    const entity = await this.getOneById(user.id);
 
     const filtered = this.entities.filter((u) => u.id !== user.id);
 
