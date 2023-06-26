@@ -36,6 +36,7 @@ npm i
 
 ```
 npm run test # For unit tests
+npm run test:cov # For unit test coverage
 npm run test:e2e # For e2e testing
 ```
 
