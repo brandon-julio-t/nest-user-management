@@ -22,6 +22,29 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+## How to Run
+
+### Setup
+
+```bash
+git clone https://github.com/brandon-julio-t/nest-user-management
+cd nest-user-management
+npm i
+```
+
+### Test
+
+```
+npm run test # For unit tests
+npm run test:e2e # For e2e testing
+```
+
+### Run Server
+
+```
+npm run start # Then visit localhost:3000 in your browser
+```
+
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
