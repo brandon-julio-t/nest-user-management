@@ -38,10 +38,6 @@ export class UsersService {
   async update(payload: Partial<User> & Pick<User, 'id'>) {
     const entity = this.getOneById(payload.id);
 
-    if (!entity) {
-      return false;
-    }
-
     this.entities = this.entities.map((user) =>
       user.id === payload.id ? { ...user, ...payload } : user,
     );
@@ -51,10 +47,6 @@ export class UsersService {
 
   async delete(user: User) {
     const entity = this.getOneById(user.id);
-
-    if (!entity) {
-      return false;
-    }
 
     const filtered = this.entities.filter((u) => u.id !== user.id);
 
