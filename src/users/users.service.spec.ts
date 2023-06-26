@@ -18,7 +18,7 @@ describe('UsersService', () => {
 
   it('should be able to add user', () => {
     expect(
-      service.save({
+      service.create({
         name: 'name',
         email: 'email',
         age: 1,

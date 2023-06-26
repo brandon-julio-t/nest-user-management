@@ -24,7 +24,7 @@ export class UsersService {
     return this.entities.find((user) => user.id === id) ?? null;
   }
 
-  save(payload: CreateUserDto) {
+  create(payload: CreateUserDto) {
     const entity = {
       id: uuid(),
       ...payload,
