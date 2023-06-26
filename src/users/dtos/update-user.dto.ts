@@ -2,9 +2,6 @@ import { IsNotEmpty } from 'class-validator';
 
 export default class UpdateUserDto {
   @IsNotEmpty()
-  id: string;
-
-  @IsNotEmpty()
   name: string;
 
   @IsNotEmpty()

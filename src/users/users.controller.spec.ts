@@ -58,9 +58,18 @@ describe('UsersController', () => {
   });
 
   it('should use user service create method', async () => {
-    jest.spyOn(svc, 'create').mockImplementation(() => Promise.resolve(true));
+    const payload = {
+      name: 'name',
+      email: 'email',
+      age: 1,
+      address: 'address',
+    } as User;
 
-    expect(await controller.create({} as any)).toBeTruthy();
+    jest
+      .spyOn(svc, 'create')
+      .mockImplementation(() => Promise.resolve(payload));
+
+    expect(await controller.create(payload)).toMatchObject(payload);
     expect(svc.create).toBeCalled();
     expect(svc.create).toBeCalledTimes(1);
   });
@@ -78,9 +87,9 @@ describe('UsersController', () => {
       .spyOn(svc, 'getOneById')
       .mockImplementation(() => Promise.resolve(user));
 
-    jest.spyOn(svc, 'update').mockImplementation(() => Promise.resolve(true));
+    jest.spyOn(svc, 'update').mockImplementation(() => Promise.resolve(user));
 
-    expect(await controller.update('id', {} as any)).toBeTruthy();
+    expect(await controller.update('id', user)).toMatchObject(user);
     expect(svc.update).toBeCalled();
     expect(svc.update).toBeCalledTimes(1);
   });
@@ -106,9 +115,9 @@ describe('UsersController', () => {
       .spyOn(svc, 'getOneById')
       .mockImplementation(() => Promise.resolve(user));
 
-    jest.spyOn(svc, 'delete').mockImplementation(() => Promise.resolve(true));
+    jest.spyOn(svc, 'delete').mockImplementation(() => Promise.resolve(user));
 
-    expect(await controller.delete('id')).toBeTruthy();
+    expect(await controller.delete('id')).toMatchObject(user);
     expect(svc.delete).toBeCalled();
     expect(svc.delete).toBeCalledTimes(1);
   });
