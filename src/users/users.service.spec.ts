@@ -39,6 +39,10 @@ describe('UsersService', () => {
     expect(await service.getOneById(user.id)).toBe(user);
   });
 
+  it('should return null if user does not exist', async () => {
+    expect(await service.getOneById('dummy id')).toBeNull();
+  });
+
   it('should be able to update user', async () => {
     const [user] = await service.getAll();
 
@@ -50,6 +54,10 @@ describe('UsersService', () => {
     expect(updatedUser?.name).toBe(newName);
   });
 
+  it('should return undefined if user to be updated does not exist', async () => {
+    expect(await service.update({ id: 'dummy-id' })).toBeUndefined();
+  });
+
   it('should be able to remove user', async () => {
     const [user] = await service.getAll();
 
@@ -58,5 +66,9 @@ describe('UsersService', () => {
 
     const users = await service.getAll();
     expect(users.length).toBe(0);
+  });
+
+  it('should return undefined if user to be deleted does not exist', async () => {
+    expect(await service.delete({ id: 'dummy-id' } as any)).toBeUndefined();
   });
 });

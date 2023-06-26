@@ -37,15 +37,18 @@ export class UsersService {
   async update(payload: Partial<User> & Pick<User, 'id'>) {
     const entity = await this.getOneById(payload.id);
 
-    this.entities = this.entities.map((user) =>
-      user.id === payload.id ? { ...user, ...payload } : user,
-    );
+    if (!entity) return;
+
+    const index = this.entities.findIndex((user) => user.id === payload.id);
+    this.entities[index] = { ...entity, ...payload };
 
     return entity;
   }
 
   async delete(user: User) {
     const entity = await this.getOneById(user.id);
+
+    if (!entity) return;
 
     const filtered = this.entities.filter((u) => u.id !== user.id);
 
