@@ -16,7 +16,7 @@ describe('UsersService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should able to add user', () => {
+  it('should be able to add user', () => {
     expect(
       service.save({
         name: 'name',
@@ -33,13 +33,13 @@ describe('UsersService', () => {
     expect(user.id).toBeDefined();
   });
 
-  it('should able to find user', () => {
+  it('should be able to find user', () => {
     const [user] = service.getAll();
 
     expect(service.getOneById(user.id)).toBe(user);
   });
 
-  it('should able to update user', () => {
+  it('should be able to update user', () => {
     const [user] = service.getAll();
 
     const newName = 'new name';
@@ -54,5 +54,6 @@ describe('UsersService', () => {
 
     expect(service.delete(user)).toBeTruthy();
     expect(service.getOneById(user.id)).toBeNull();
+    expect(service.getAll().length).toBe(0);
   });
 });
