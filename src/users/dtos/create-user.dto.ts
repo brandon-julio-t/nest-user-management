@@ -1,5 +1,15 @@
-import { User } from '../contracts/user.interface';
+import { IsNotEmpty } from 'class-validator';
 
-type CreateUserDto = Omit<User, 'id'>;
+export default class CreateUserDto {
+  @IsNotEmpty()
+  name: string;
 
-export default CreateUserDto;
+  @IsNotEmpty()
+  email: string;
+
+  @IsNotEmpty()
+  age: number;
+
+  @IsNotEmpty()
+  address: string;
+}

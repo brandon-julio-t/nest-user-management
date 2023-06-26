@@ -1,5 +1,18 @@
-import { User } from '../contracts/user.interface';
+import { IsNotEmpty } from 'class-validator';
 
-type UpdateUserDto = Partial<User> & Pick<User, 'id'>;
+export default class UpdateUserDto {
+  @IsNotEmpty()
+  id: string;
 
-export default UpdateUserDto;
+  @IsNotEmpty()
+  name: string;
+
+  @IsNotEmpty()
+  email: string;
+
+  @IsNotEmpty()
+  age: number;
+
+  @IsNotEmpty()
+  address: string;
+}
