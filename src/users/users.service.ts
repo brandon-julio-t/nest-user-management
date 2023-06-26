@@ -16,15 +16,15 @@ export class UsersService {
     UsersService._entities = newEntities;
   }
 
-  getAll() {
+  async getAll() {
     return this.entities;
   }
 
-  getOneById(id: string) {
+  async getOneById(id: string) {
     return this.entities.find((user) => user.id === id) ?? null;
   }
 
-  create(payload: CreateUserDto) {
+  async create(payload: CreateUserDto) {
     const entity = {
       id: uuid(),
       ...payload,
@@ -35,7 +35,7 @@ export class UsersService {
     return true;
   }
 
-  update(payload: UpdateUserDto) {
+  async update(payload: UpdateUserDto) {
     const entity = this.getOneById(payload.id);
 
     if (!entity) {
@@ -47,7 +47,7 @@ export class UsersService {
     return true;
   }
 
-  delete(user: User) {
+  async delete(user: User) {
     const entity = this.getOneById(user.id);
 
     if (!entity) {
