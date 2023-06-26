@@ -21,7 +21,7 @@ export class UsersService {
   }
 
   getOneById(id: string) {
-    return this.entities.find((user) => user.id === id);
+    return this.entities.find((user) => user.id === id) ?? null;
   }
 
   save(payload: CreateUserDto) {
