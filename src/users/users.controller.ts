@@ -4,17 +4,15 @@ import {
   Delete,
   Get,
   HttpCode,
-  HttpException,
   HttpStatus,
-  InternalServerErrorException,
   NotFoundException,
   Param,
   Post,
   Put,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
 import CreateUserDto from './dtos/create-user.dto';
 import UpdateUserDto from './dtos/update-user.dto';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
