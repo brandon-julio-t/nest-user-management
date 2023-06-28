@@ -40,9 +40,7 @@ export class UsersService {
     if (!entity) return;
 
     const index = this.entities.findIndex((user) => user.id === payload.id);
-    this.entities[index] = { ...entity, ...payload };
-
-    return entity;
+    return (this.entities[index] = { ...entity, ...payload });
   }
 
   async delete(user: User) {
