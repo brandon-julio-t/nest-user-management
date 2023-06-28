@@ -48,10 +48,12 @@ describe('UsersService', () => {
 
     const newName = 'new name';
 
-    expect(await service.update({ ...user, name: newName })).toBeTruthy();
-
-    const updatedUser = await service.getOneById(user.id);
+    const updatedUser = await service.update({ ...user, name: newName });
+    expect(updatedUser).toBeTruthy();
     expect(updatedUser?.name).toBe(newName);
+
+    const foundUser = await service.getOneById(user.id);
+    expect(foundUser?.name).toBe(newName);
   });
 
   it('should return undefined if user to be updated does not exist', async () => {
